@@ -1,3 +1,5 @@
+# flag{f34r1355_5ud0ku_c0nqu3r0r}
+
 from pwn import *
 import copy
 from time import sleep
@@ -66,6 +68,9 @@ y=[]
 
 
 
+'''
+The first part of the code is when I become somewhat sure that all the puzzles are the same, so it is faster than the second, when I was not sure.
+'''
 with process('./sudoku') as p:
     x=p.read().decode()
         # convert x to string
@@ -120,10 +125,13 @@ with process('./sudoku') as p:
             if i==(differences[-1]):
                 p.clean()
             p.sendline(bytes(f"{i[0]} {i[1]} {i[2]}\n",'ascii'))
+    print(p.read().decode())
 
 
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
+''' ----------------------------------------------------------------
+The below code is when, I was not sure if all the sudoku puzzles are the same, I run it for 100 iteration, and then guessed all puzzle are the same... Below code will also work, but it will take more time.
+ ----------------------------------------------------------------
+ '''
     # for stree2 in range(420):
     #     print(stree2)
     #     y=[]
@@ -182,8 +190,4 @@ with process('./sudoku') as p:
     #         if i%2==0 or i==len(differences)-1:
     #             p.clean()
     #         p.sendline(bytes(f"{differences[i][0]} {differences[i][1]} {differences[i][2]}\n",'ascii'))
-    print(p.read().decode())
-
-
-
-    
+    # print(p.read().decode())
